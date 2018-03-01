@@ -12,8 +12,6 @@ class lightTester:
         self.count = 0
         
     def apply(self, cmd):
-
-
         if cmd[0] == "switch":
             for i in range(cmd[1],cmd[3]+1):
                 for j in range(cmd[2],cmd[4]+1):

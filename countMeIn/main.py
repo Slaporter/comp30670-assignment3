@@ -18,7 +18,10 @@ def main(filename):
     print("Number of lights on:", lights.count)
     
 def parse_file(filename):
-    fh1=urllib.request.urlopen(filename).read().decode('utf-8').splitlines()
+    if "http://" in filename:
+        fh1=urllib.request.urlopen(filename).read().decode('utf-8').splitlines()
+    else:
+        fh1=open(filename).read().splitlines()
     rex = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*") 
     my_list=[int(fh1[0])]
     for line in fh1[1:]:
@@ -36,5 +39,5 @@ def script_run():
     main(sys.argv[2])
 
 if __name__ == '__main__':
-    main('http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt')
+    main('../input_test')
     
