@@ -6,6 +6,8 @@ Created on 28 Feb 2018
 import re
 from countMeIn.lightTester import lightTester
 import tqdm
+import urllib.request
+import sys
 
 
 def main(filename):
@@ -16,7 +18,7 @@ def main(filename):
     print("Number of lights on:", lights.count)
     
 def parse_file(filename):
-    fh1=open(filename).read().splitlines()
+    fh1=urllib.request.urlopen(filename).read().decode('utf-8').splitlines()
     rex = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*") 
     my_list=[int(fh1[0])]
     for line in fh1[1:]:
@@ -29,7 +31,10 @@ def parse_file(filename):
                 my_cmd.append(int(rexy.group(i)))    
         my_list.append(my_cmd)
     return my_list
-    
-parse_file("../input_test")
-main("../input_test")
+
+def script_run():
+    main(sys.argv[2])
+
+if __name__ == '__main__':
+    main('http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt')
     

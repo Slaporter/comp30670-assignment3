@@ -4,7 +4,7 @@ from distutils.core import setup
 import countMeIn
 setup(
     name='discoLights',
-    packages=[countMeIn],
+    packages=['countMeIn'],
     version='0.1.0',
     description='Cookiecutter template for a Python package',
     author='Audrey Roy Greenfeld',
@@ -29,4 +29,7 @@ setup(
         'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Software Development',
     ],
+    entry_points={
+          'console_scripts':['solve_led=countMeIn.main:script_run']
+          }
 )

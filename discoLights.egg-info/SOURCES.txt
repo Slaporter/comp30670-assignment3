@@ -1,0 +1,10 @@
+README.rst
+setup.cfg
+countMeIn/__init__.py
+countMeIn/lightTester.py
+countMeIn/main.py
+discoLights.egg-info/PKG-INFO
+discoLights.egg-info/SOURCES.txt
+discoLights.egg-info/dependency_links.txt
+discoLights.egg-info/entry_points.txt
+discoLights.egg-info/top_level.txt
