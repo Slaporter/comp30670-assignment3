@@ -21,6 +21,22 @@ def test_parse_file():
 # def test_script_run():
 #     assert
 #     
-# def test_lightester_apply():
+def test_turn_on():
+    lt=lightTester(10)
+    lt.turn_on(["turn on", 0, 0, 9, 9])
+    assert lt.count==100
 
+def test_turn_off():
+    lt=lightTester(10)
+    lt.turn_on(["turn on", 0, 0, 9, 9])
+    lt.turn_off(["turn off", 0, 0, 9, 9])
+    assert lt.count==0
+
+def test_switch():
+    lt=lightTester(10)
+    lt.turn_on(["switch", 0, 0, 9, 9])
+    assert lt.count==100
+
+def test_lightester_apply():
+    pass
 

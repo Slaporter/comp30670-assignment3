@@ -11,9 +11,22 @@ class lightTester:
         self.lights = [[False]*(n+1) for _ in range(n+1)]
         self.count = 0
         
-    def apply(self, cmd):
-        if cmd[0] == "switch":
-            for i in range(cmd[1],cmd[3]+1):
+    def turn_on(self,cmd):
+        for i in range(cmd[1],cmd[3]+1):
+                for j in range(cmd[2],cmd[4]+1):
+                    if self.lights[i][j]==False:
+                        self.count +=1
+                        self.lights[i][j]=True
+                        
+    def turn_off(self,cmd):
+        for i in range(cmd[1],cmd[3]+1):
+                for j in range(cmd[2],cmd[4]+1):
+                    if self.lights[i][j]==True:
+                        self.count -=1
+                        self.lights[i][j]=False 
+                        
+    def switch(self,cmd):
+        for i in range(cmd[1],cmd[3]+1):
                 for j in range(cmd[2],cmd[4]+1):
                     if self.lights[i][j]==False:
                         self.count +=1
@@ -21,19 +34,14 @@ class lightTester:
                     else:
                         self.count-=1
                         self.lights[i][j]=False
+    
+    def apply(self, cmd):
+        if cmd[0] == "switch":
+            self.switch(cmd)
         elif cmd[0] == "turn on":
-            for i in range(cmd[1],cmd[3]+1):
-                for j in range(cmd[2],cmd[4]+1):
-                    if self.lights[i][j]==False:
-                        self.count +=1
-                        self.lights[i][j]=True     
+            self.turn_on(cmd)              
         elif cmd[0] == "turn off":
-            for i in range(cmd[1],cmd[3]+1):
-                for j in range(cmd[2],cmd[4]+1):
-                    if self.lights[i][j]==True:
-                        self.count -=1
-                        self.lights[i][j]=False 
-
+            self.turn_off(cmd)
         
     def count(self):
         return self.count
